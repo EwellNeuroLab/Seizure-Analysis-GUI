@@ -1,0 +1,8 @@
+02.09.22 Week 3 fs 2000 Define recording parameters by Port,ID,Channels. Only put space between the channel numbers! Each mouse should be in a separate row.
+A, M15, 8 23
+B, M16, 40 55
+C, M17, 72 87
+D, M19, 104 119
+
+
+		
