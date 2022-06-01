@@ -20,9 +20,13 @@ GUI expects the user to select a working directory (see GUI guide section for de
 
 * Configuration file: a .txt file with a specific structure, containing important information about the experiment.
 
-![image](https://user-images.githubusercontent.com/94412124/171504438-0c74d0d1-0907-4b4d-8e1d-5315f0ca0abe.png)
+![image](https://user-images.githubusercontent.com/94412124/171505253-4e66b020-8f70-4900-aad7-9faa65492c1b.png)
 
 Line 1 - any comment can be added here, but only here.
+
+Line 2 - information about the first mouse. I. Open Ephys port (A,B,C or D) II. mouse's name/ID (arbitrary, M15 here) III. list of channels belonging to this mouse (8 23). Make sure to put comma between port,id,channels. Channel number should be separated by space.
+
+Line 3-5 - information about the other 3 mice. Each mouse should be in a separate row
 
 
 ## GUI guide
