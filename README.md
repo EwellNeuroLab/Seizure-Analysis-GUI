@@ -25,21 +25,26 @@ Line 2 - information about the first mouse. I. Open Ephys port (A,B,C or D) II. 
 
 Line 3-5 - information about the other 3 mice. Each mouse should be in a separate row
 
+*Note: the GUI can handle up to 32 channels for each mouse. If more is needed, some modification is needed (see Editing the GUI section for details)*
+
 
 ## GUI guide
 Double-click on the SeizureAnalysisEwellLab.mlapp. Wait for MATLAB to open and then the GUI will pop up.
 
-**Loading the working directory**
+**_Loading the working directory_**
+
 Press the *Choose Working Directory!* button. A small window will pop-up, where a user ID has to by typed in (such as initials). The ID will be appended to the output file name. Next, select the working directory where timestamp/voltage/video data + config.txt are.
 
-**Selecting mouse and recording date**
+**_Selecting mouse and recording date_**
+
 The GUI loads the mouse names from the configuration file and recording dates from the file names. In the *Date* and *Mouse ID* dropdown menus, select the recording date and the mouse, then press the *Read Files* button. 
 
 ![image](https://user-images.githubusercontent.com/94412124/171508881-05b47dac-c882-4f8b-9a0a-fc3500d5ad95.png)
 
 A green bar shows the progress of loading the data.
 
-**Plot settings**
+**_Plot settings_**
+
 When the data is loaded, press the *Plot LFP button*. In default, every channel defined for this mouse in the config file are displayed in the LFP Viewer. 
 Channel selection (top box): tick/untick channels to show/hide. Press *Plot LFP button* to refresh the LFP Viewer. 
 
@@ -51,7 +56,8 @@ TimeWindow(s): when the user clicks on the timeslider to timepoint T, LFP + vide
 
 *Note: Since LFP displayed in a MATLAB figure, user can access a plot menu by bringing the cursor on the figure. In the menu, user can select a zoom in/out or hand tool to move along X-Y axis.*
 
-**Video calibration**
+**_Video calibration_**
+
 To ensure that the video playback reflects real-time speed, a video calibration method is provided.
 1) Click anywhere on the time slider in the bottom of the GUI. 
 2) LFP and video are displayed, in the length of 2xTimeWindow, in this example 2x10 = 20 s.
@@ -62,7 +68,8 @@ To ensure that the video playback reflects real-time speed, a video calibration 
 
 This step is recommended when the GUI is used for the first time. Elapsed video time is displayed during seizure scoring as well, therefore replay speed can be adjusted anytime when it's necessary.
 
-**Seizure detection**
+**_Seizure detection_**
+
 Click on the *Seizure Detection* button. A detection window pops up where the user can set the followings. LFP is downsampled and filtered (parameters are displayed).
 
 1) Channel: channel to use for seizure detection
@@ -78,24 +85,61 @@ When everything is set, press the *Run Detection* button. Detected seizures are 
 
 Note 1: if seizure detection has already happened in this working directory, the GUI offers the user to load previous settings. 
 
-**Scoring**
-When detection result is accepted, the first seizure is shown in the LFP Viewer. By pressing the *Play Video* button, video-LFP of the first seizure are played. Scoring questions can be answered and saved by pressing the *Save* button.
+**_Scoring_**
+
+When detection result is accepted, the first seizure is shown in the LFP Viewer. By pressing the *Play Video* button, video-LFP of the first seizure are played. Scoring questions can be answered and saved by pressing the *Save* button. User can toggle between seizures with the *Previous* and *Next* buttons.
 
 ![image](https://user-images.githubusercontent.com/94412124/171514298-5f96102d-8820-480b-a01e-13f2d44ba6a4.png)
 
-User can toggle between seizures with the *Previous* and *Next* buttons.
 
+**_Output files_**
+Most important information can be found in the Scoring file.
+Within the working directory, a Seizure Detection Output folder is created. In this folder, 3 files are created for individual detection & scoring.
+Settings file: channel # for detection, amplitude threshold, signed multiplier (-1 if flipped, +1 if not flipped),  required minimum duration. Once it's created, it can be loaded into the GUI and used as a template for further detections.
 
-**Output files**
+*Scoring file*: Mouse name, recording date, user ID, onset,offset, duration, LFP and behavioral scoring answers and comments for each event. 
+*Note: the n variable is a counter in the GUI that does not always reflects the number of seizures. Use the length of a vector (i.e) to determine number of seizures.*
 
-**Warning and error messages**
+Detection Results file: # of detected events, a time vector for each event, onset,offset and duration for each event, applied amplitude threshold, filtering and downsampling settings.
+
+*Output file names*: each output file has a specific 
+* mouse ID
+* user ID
+* recording date
+* scoring date
+
+This way the same mouse/same hour can be scored by more than one person, moreover the scoring date ensures that the same person can finish scoring of one dataset in different times (resulting in more than one files.) 
+
+*Note: a script to organize and merge the output files will be provided.*
+
+**_Warning and error messages_**
+
+**No configuration file was found!** 
+
+Happens when the working directory does not have. Add the configuration file and press the *Choose Working Directory!* button again. 
+
+**There are X more data point in timestamp file. Data was chunked to match amp file, but consider double-checking your data.**
+
+or
+
+**There are X more data point in amp file. Data was chunked to match timestamp file, but consider double-checking your data.**
+
+Sometimes it can happen that the timestamp or the amplifier file has less data, usually with one data packet (X = 256) and therefore not requires user action. However, if X is a high number, double-check your data!
+
 
 ## Editing the GUI
+In order to edit the GUI, open MATLAB (R2021b or newer). Go to APPS -> Design App. Open the SeizureAnalysisEwellLab.mlapp file. Go to Code View.
 
-### Input data
-### Channel labels
-### Seizure detection
+
+**_Modifying channel labels_**
+In our experiments, two channels were used for each mouse. Therefore only two labels are defined in the GUI - left and right. In order to modify/add more label do the following: 
+Go to line 736-737 to edit the existing labels. Add more labels by changing the index of app.ChannelLabel vector (such as app.ChannelLabel(3) = " (ventral left)"; app.ChannelLabel(4) = " (ventral right)";)
+
+**_Modifying the number of maximum channels_**
+The GUI is set to a maximum number of 32 channels. If more than this is needed:
+Go to line 733-734 and change the 32 to any number in the zeros() and strings() function.
+
+**_Replacing the seizure detection algorithm_**
+ Go to line 225 and replace the SeizureDetection_EwellLabV2 function. This function is called in line 362, make sure you change it to the function you are using.
  
-As a first step, you need to select a working directory where your data and a config.txt file live. An example for the config file can be found in this repository.
 
-Editing the code. Open the file within MATLAB App Designer.
