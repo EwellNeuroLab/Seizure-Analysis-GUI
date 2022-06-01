@@ -133,7 +133,7 @@ In order to edit the GUI, open MATLAB (R2021b or newer). Go to APPS -> Design Ap
 
 **_Modifying channel labels_**
 In our experiments, two channels were used for each mouse. Therefore only two labels are defined in the GUI - left and right. In order to modify/add more label do the following: 
-Go to line 736-737 to edit the existing labels. Add more labels by changing the index of app.ChannelLabel vector (such as app.ChannelLabel(3) = " (ventral left)"; app.ChannelLabel(4) = " (ventral right)";)
+Go to line 736-737 to edit the existing labels. Add more labels by changing the index of app.ChannelLabel vector (such as app.ChannelLabel(3) = " (3rd channel)"; app.ChannelLabel(4) = " (4th channel)";)
 
 **_Modifying the number of maximum channels_**
 The GUI is set to a maximum number of 32 channels. If more than this is needed:
