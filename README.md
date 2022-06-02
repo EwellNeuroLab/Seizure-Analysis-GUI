@@ -49,7 +49,7 @@ A green bar shows the progress of loading the data.
 When the data is loaded, press the *Plot LFP button*. In default, every channel defined for this mouse in the config file are displayed in the LFP Viewer. 
 Channel selection (top box): tick/untick channels to show/hide. Press *Plot LFP button* to refresh the LFP Viewer. 
 
-Sampling Rate field: set the sampling rate of LFP sampling in kilohertz.
+Sampling Rate: set the sampling rate of LFP sampling in kilohertz.
 
 TimeWindow(s): when the user clicks on the timeslider to timepoint T, LFP + video are displayed from T-TimeWindow to T+TimeWindow. Furthermore, during seizure scoring, seizures are displayed as TimeWindow (pre-seizure) - Seizure - TimeWindow (post-seizure). In this example, we set the TimeWindow to 10 s.
 
@@ -65,8 +65,8 @@ To ensure that the video playback reflects real-time speed, a video calibration 
 2) LFP and video are displayed, in the length of 2xTimeWindow, in this example 2x10 = 20 s.
 3) When the video replay ends, elapsed time is displayed. 
 4) Video is replayed in real-time (elapsed time is close to 2x TimeWindow): no action is needed
-5) Video is replayed faster (elapsed time << 2x TimeWindow): increase the Video lag variable to make the video display slower.
-6) Video is replayed slower (elapsed time >> 2x TimeWindow): decrease the Video lag variable to make the video display faster. Note: at the very first video replay, it can happen that the first frames are 'stuck' and therefore resulting a slower overall replay speed. If this is observed, click on the time slider again and repeat the steps above.
+5) Video is replayed faster (elapsed time << 2x TimeWindow): increase the *Video lag* variable to make the video display slower.
+6) Video is replayed slower (elapsed time >> 2x TimeWindow): decrease the *Video lag* variable to make the video display faster. Note: at the very first video replay, it can happen that the first frames are 'stuck' and therefore resulting a slower overall replay speed. If this is observed, click on the time slider again and repeat the steps above.
 
 This step is recommended when the GUI is used for the first time. Elapsed video time is displayed during seizure scoring as well, therefore replay speed can be adjusted anytime when it's necessary.
 
@@ -86,22 +86,21 @@ LFP is downsampled (500 Hz) and filtered (3-50 Hz). In the same window, these pa
 
 When everything is set, press the *Run Detection* button. Detected seizures are displayed. Results can be accepted by the *Accept Results* button or can be rerun after modifying thresholding/filtering parameters.
 
-Note 1: if seizure detection has already happened in this working directory, the GUI offers the user to load previous settings. 
+*Note: if seizure detection has already happened in this working directory, the GUI offers the user to load previous settings.* 
 
 **_Scoring_**
 
-When detection result is accepted, the first seizure is shown in the LFP Viewer. By pressing the *Play Video* button, video-LFP of the first seizure are played. Scoring questions can be answered and saved by pressing the *Save* button. User can toggle between seizures with the *Previous* and *Next* buttons.
-
-![image](https://user-images.githubusercontent.com/94412124/171514298-5f96102d-8820-480b-a01e-13f2d44ba6a4.png)
+When detection result is accepted, the first seizure is shown in the LFP Viewer. By pressing the *Play Video* button, video for the first seizure is played. Scoring questions can be answered and saved by pressing the *Save* button. User can toggle between seizures with the *Previous* and *Next* buttons.
 
 
 **_Output files_**
 Most important information can be found in the Scoring file.
 Within the working directory, a Seizure Detection Output folder is created. In this folder, 3 files are created for individual detection & scoring.
+
 Settings file: channel # for detection, amplitude threshold, signed multiplier (-1 if flipped, +1 if not flipped),  required minimum duration. Once it's created, it can be loaded into the GUI and used as a template for further detections.
 
 *Scoring file*: Mouse name, recording date, user ID, onset,offset, duration, LFP and behavioral scoring answers and comments for each event. 
-*Note: the n variable is a counter in the GUI that does not always reflects the number of seizures. Use the length of a vector (i.e) to determine number of seizures.*
+*Note: the n variable is a counter in the GUI that does not always reflects the number of seizures. Use the length of a vector (i.e onset vector) to determine number of seizures.*
 
 Detection Results file: # of detected events, a time vector for each event, onset,offset and duration for each event, applied amplitude threshold, filtering and downsampling settings.
 
@@ -139,7 +138,7 @@ In our experiments, two channels were used for each mouse. Therefore only two la
 Go to line 736-737 to edit the existing labels. Add more labels by changing the index of app.ChannelLabel vector (such as app.ChannelLabel(3) = " (3rd channel)"; app.ChannelLabel(4) = " (4th channel)";)
 
 **_Modifying the number of maximum channels_**
-The GUI is set to a maximum number of 32 channels. If more than this is needed:
+The GUI is set to a maximum number of 32 channels. If more than 32 is needed:
 Go to line 733-734 and change the 32 to any number in the zeros() and strings() function.
 
 **_Replacing the seizure detection algorithm_**
