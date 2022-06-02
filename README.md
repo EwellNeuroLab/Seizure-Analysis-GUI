@@ -1,6 +1,10 @@
 # Seizure-Analysis-GUI
 
-Download SeizureAnalysisEwellLab.mlapp and double-click on the file to run the GUI.
+SeizureAnalysisEwellLab.mlapp - download and double-click on the file to run the GUI.
+app_icon.png - icon for the GUI, can be run without it
+config.txt - an example for configuration file (see details below)
+readLFP_Bonsai.m - a script that reads the Bonsai output files into MATLAB
+ReadScoringFiles.m - a script to make easier to summarize the outputs of the scoring results
 
 
 ### Dependencies
@@ -112,7 +116,7 @@ Detection Results file: # of detected events, a time vector for each event, onse
 
 This way the same mouse/same hour can be scored by more than one person, moreover the scoring date ensures that the same person can finish scoring of one dataset in different times (resulting in more than one files.) 
 
-*Note: a script to organize and merge the output files will be provided.*
+*Note: ReadScoringFiles.m script to organize and merge the output files is provided.*
 
 **_Warning and error messages_**
 
