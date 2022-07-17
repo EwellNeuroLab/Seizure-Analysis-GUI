@@ -1,5 +1,7 @@
 # Seizure-Analysis-GUI
 
+### If you use this code, please cite https://doi.org/10.1101/2022.07.14.500102
+
 SeizureAnalysisEwellLab.mlapp - download and double-click on the file to run the GUI.
 app_icon.png - icon for the GUI, can be run without it
 config.txt - an example for configuration file (see details below)
