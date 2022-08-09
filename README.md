@@ -13,6 +13,9 @@ ReadScoringFiles.m - a script to make easier to summarize the outputs of the sco
 Code was written in Matlab 2021b and R2022a. Necessary package(s):
 * Signal Processing Toolbox
 
+### GUI update
+See GUIVersions.txt for details when and what kind of changes occured on the GUI.
+
 ## Input data
 The GUI is optimized for data acquired with our Bonsai workflow (https://github.com/EwellNeuroLab/Chronic-Recordings-Bonsai-Workflow).
 GUI expects a working directory with the following content:
