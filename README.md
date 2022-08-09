@@ -81,8 +81,8 @@ This step is recommended when the GUI is used for the first time. Elapsed video 
 
 **_Seizure detection_**
 
-The built-in seizure detection algorithm is a thresholding on a bandpass-filtered LFP. Detect peaks are merged within a certain time window and considered as seizure when they are longer than a user-defined time.
-Moreover, a second algorithm is provided that takes the FFT of the downsampled LFP in small windows and averages it out in the 4-40 Hz frequency range. The resulting trace is thresholded and the detected points are merged within a certain time window and considered as seizure when they are longer than a user-defined time 
+The built-in seizure detection algorithm is a thresholding on a bandpass-filtered LFP. Detected peaks are merged within a certain time window and considered as a seizure when it is longer than a user-defined time.
+Moreover, a second algorithm is provided that takes the FFT of the downsampled LFP in small windows and averages it out in the 4-40 Hz frequency range. The resulting trace is thresholded and the detected points are merged within a certain time window and considered as a seizure when it is longer than a user-defined time. 
 
 Click on the *Seizure Detection* button. A detection window pops up where the user can set the followings. 
 
