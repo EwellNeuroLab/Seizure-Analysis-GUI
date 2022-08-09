@@ -102,16 +102,6 @@ When everything is set, press the *Run Detection* button. Detected seizures are 
 
 *Note: if seizure detection has already happened in this working directory, the GUI offers the user to load previous settings.* 
 
-**_Custom-written seizure detection_**
-
-The user may use their own algorithm to detect seizures. In order to demonstrate how to do this, we added a second, spectral-based algorithm. The algorithm is wrapped up in the CustomSeizureDetection() function and contains the following features:
-
-1)  Input of any custom-written detection algorithm - the LFP read by the GUI
-2)  Incorporate the input fields, such as FreqRange and Channel to provide user settings for any kind of algorithm (optional) 
-3)  Output - Seizure Onset, Seizure Offset and Duration vectors measured in seconds (N events means N long vectors) - that are crucial to ensure that the scoring works well! Moreover, an output mat file where any information about the seizure can be saved.
-
-When the user wishes to use their own algorithm, the content of this function needs to be replaced to any arbitrary algorithm. 
-
 
 **_Scoring_**
 
@@ -157,6 +147,15 @@ Sometimes it can happen that the timestamp or the amplifier file has less data, 
 ## Editing the GUI
 In order to edit the GUI, open MATLAB (R2021b or newer). Go to APPS -> Design App. Open the SeizureAnalysisEwellLab.mlapp file. Go to Code View.
 
+**_Custom-written seizure detection algorithm_**
+
+The user may use their own algorithm to detect seizures. In order to demonstrate how to do this, we added a second, spectral-based algorithm. The algorithm is wrapped up in the CustomSeizureDetection() function and contains the following features:
+
+1)  Input of any custom-written detection algorithm - the LFP read by the GUI
+2)  Incorporate the input fields, such as FreqRange and Channel to provide user settings for any kind of algorithm (optional) 
+3)  Output - Seizure Onset, Seizure Offset and Duration vectors measured in seconds (N events means N long vectors) - that are crucial to ensure that the scoring works well! Moreover, an output mat file where any information about the seizure can be saved.
+
+When the user wishes to use their own algorithm, the content of this function needs to be replaced to any arbitrary algorithm. 
 
 **_Modifying channel labels_**
 In our experiments, two channels were used for each mouse. Therefore only two labels are defined in the GUI - left and right. In order to modify/add more label do the following: 
@@ -165,8 +164,4 @@ Go to line 736-737 to edit the existing labels. Add more labels by changing the 
 **_Modifying the number of maximum channels_**
 The GUI is set to a maximum number of 32 channels. If more than 32 is needed:
 Go to line 733-734 and change the 32 to any number in the zeros() and strings() function.
-
-**_Replacing the seizure detection algorithm_**
- Go to line 225 and replace the SeizureDetection_EwellLabV2 function. This function is called in line 362, make sure you change it to the function you are using.
- 
 
