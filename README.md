@@ -81,21 +81,37 @@ This step is recommended when the GUI is used for the first time. Elapsed video 
 
 **_Seizure detection_**
 
-Click on the *Seizure Detection* button. A detection window pops up where the user can set the followings. .
+The built-in seizure detection algorithm is a thresholding on a bandpass-filtered LFP. Detect peaks are merged within a certain time window and considered as seizure when they are longer than a user-defined time.
+Moreover, a second algorithm is provided that takes the FFT of the downsampled LFP in small windows and averages it out in the 4-40 Hz frequency range. The resulting trace is thresholded and the detected points are merged within a certain time window and considered as seizure when they are longer than a user-defined time 
 
-1) Channel: channel to use for seizure detection
-2) Threshold: Amplitude threshold (N x std, where N can be set as integer)
-3) Min Dur (s): minimum duration of a seizure
+Click on the *Seizure Detection* button. A detection window pops up where the user can set the followings. 
 
-LFP is downsampled (500 Hz) and filtered (3-50 Hz). In the same window, these parameters can be adjusted.
+1) When the checkbox is clicked, the custom-written algorithm is used (in this case, the FFT-based algorithm).
+2) Channel: channel to use for seizure detection
+3) Threshold: Amplitude threshold (N x std, where N can be set as integer)
+4) Min Dur (s): minimum duration of a seizure
+5) Merge Bursts (s): the time-window within detected bursts are merged to form seizure candidates
+
+By default, LFP is downsampled (500 Hz) and filtered (3-50 Hz). In the same window, these parameters can be adjusted.
 
 1) DownSample (Hz): new (lower) sample rate for the LFP
-2) BandPass (Hz): lower and upper boundaries of the bandpass filter
+2) FreqRange (Hz): lower and upper boundaries of the bandpass filter/ frequency band where the mean is calculated in the case of the 2nd algorithm
 3) Press the *Apply Filter Settings* button 
 
 When everything is set, press the *Run Detection* button. Detected seizures are displayed. Results can be accepted by the *Accept Results* button or can be rerun after modifying thresholding/filtering parameters.
 
 *Note: if seizure detection has already happened in this working directory, the GUI offers the user to load previous settings.* 
+
+**_Custom-written seizure detection_**
+
+The user may use their own algorithm to detect seizures. In order to demonstrate how to do this, we added a second, spectral-based algorithm. The algorithm is wrapped up in the CustomSeizureDetection() function and contains the following features:
+
+1)  Input of any custom-written detection algorithm - the LFP read by the GUI
+2)  Incorporate the input fields, such as FreqRange and Channel to provide user settings for any kind of algorithm (optional) 
+3)  Output - Seizure Onset, Seizure Offset and Duration vectors measured in seconds (N events means N long vectors) - that are crucial to ensure that the scoring works well! Moreover, an output mat file where any information about the seizure can be saved.
+
+When the user wishes to use their own algorithm, the content of this function needs to be replaced to any arbitrary algorithm. 
+
 
 **_Scoring_**
 
