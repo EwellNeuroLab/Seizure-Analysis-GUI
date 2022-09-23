@@ -151,11 +151,11 @@ In order to edit the GUI, open MATLAB (R2021b or newer). Go to APPS -> Design Ap
 
 The user may use their own algorithm to detect seizures. In order to demonstrate how to do this, we added a second, spectral-based algorithm. The algorithm is wrapped up in the CustomSeizureDetection() function and contains the following features:
 
-1)  Input of any custom-written detection algorithm - the LFP read by the GUI
-2)  Incorporate the input fields, such as FreqRange and Channel to provide user settings for any kind of algorithm (optional) 
+1)  The algorithm reads and detects events on the LFP traces loaded into the GUI
+2)  The user can incorporate input fields from the GUI, such as FreqRange and Channel
 3)  Output - Seizure Onset, Seizure Offset and Duration vectors measured in seconds (N events means N long vectors) - that are crucial to ensure that the scoring works well! Moreover, an output mat file where any information about the seizure can be saved.
 
-When the user wishes to use their own algorithm, the content of this function needs to be replaced to any arbitrary algorithm. 
+When the user wishes to use their own algorithm, the content of this function needs to be replaced with their algorithm. 
 
 **_Modifying channel labels_**
 In our experiments, two channels were used for each mouse. Therefore only two labels are defined in the GUI - left and right. In order to modify/add more label do the following: 
