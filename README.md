@@ -10,7 +10,7 @@ ReadScoringFiles.m - a script to make easier to summarize the outputs of the sco
 
 
 ### Dependencies
-Code was written in Matlab 2021b and R2022a. Necessary package(s):
+The GUI runs on MATLAB R2020b and newer versions. Necessary package(s):
 * Signal Processing Toolbox
 
 ### GUI update
