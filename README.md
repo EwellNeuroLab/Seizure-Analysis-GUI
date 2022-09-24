@@ -105,7 +105,7 @@ When everything is set, press the *Run Detection* button. Detected seizures are 
 
 **_Scoring_**
 
-When detection result is accepted, the first seizure is shown in the LFP Viewer. By pressing the *Play Video* button, video for the first seizure is played. Scoring questions can be answered and saved by pressing the *Save* button. User can toggle between seizures with the *Previous* and *Next* buttons.
+When detection result is accepted, the first seizure is shown in the LFP Viewer. By pressing the *Play Video* button, video for the first seizure is played. Video can be stopped anytime by switching the *Video* button to *Off*.  Scoring questions can be answered and saved by pressing the *Save* button. User can toggle between seizures with the *Previous* and *Next* buttons.
 
 
 **_Output files_**
