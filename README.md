@@ -1,6 +1,6 @@
 # Seizure-Analysis-GUI
 
-### If you use this code, please cite https://doi.org/10.1101/2022.07.14.500102
+### If you use this code, please cite https://www.eneuro.org/content/eneuro/9/5/ENEURO.0283-22.2022.full.pdf
 
 SeizureAnalysisEwellLab.mlapp - download and double-click on the file to run the GUI.
 app_icon.png - icon for the GUI, can be run without it
